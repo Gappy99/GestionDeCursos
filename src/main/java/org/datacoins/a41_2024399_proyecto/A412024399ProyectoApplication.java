@@ -88,41 +88,30 @@ public class A412024399ProyectoApplication implements CommandLineRunner {
 				var estudiante = new Estudiante();
 				estudiante.setNombre(nombre);
 				estudiante.setApellido(apellido);
-				estudiantee.setCorreo(correo);
-				cliente.setGenero(genero);
-				cliente.setEdad(edad);
-				clienteService.guardarCliente(cliente);
-				logger.info("Cliente agregado: " + sl + cliente + sl);
+				estudiante.setCorreo(correo);
+				estudianteService.guardarEstudiante(estudiante);
+				logger.info("Cliente agregado: " + sl + estudiante + sl);
 			}
 
 			case 4 -> {
-				logger.info(sl+"*** Modificar ciente***"+sl);
-				logger.info("Ingrese el codigo del cliente a editar: ");
+				logger.info(sl+"*** Modificar Estudiante***"+sl);
+				logger.info("escriba el estudiante que quiere modificar: ");
 				var codigo = Integer.parseInt(consola.nextLine());
-				Cliente cliente = clienteService.buscarClientePorId(codigo);
-				if (cliente != null){
+				Estudiante estudiante = estudianteService.buscarEstudiantePorId(codigo);
+				if (estudiante != null){
 					logger.info("Ingrese el nombre: ");
 					var nombre = consola.nextLine();
 					logger.info("Ingrese el apellido: ");
 					var apellido = consola.nextLine();
-					logger.info("Ingrese el telefono: ");
-					var telefono = consola.nextLine();
 					logger.info("Ingrese el correo: ");
 					var correo = consola.nextLine();
-					logger.info("Ingrese el genero: ");
-					var genero = consola.nextLine();
-					logger.info("Ingrese la edad: ");
-					var edad = Integer.parseInt(consola.nextLine());
-					cliente.setNombre(nombre);
-					cliente.setApellido(apellido);
-					cliente.setTelefono(telefono);
-					cliente.setCorreo(correo);
-					cliente.setGenero(genero);
-					cliente.setEdad(edad);
-					clienteService.guardarCliente(cliente);
-					logger.info("Cliente agregado: "+sl +cliente +sl);
+					estudiante.setNombre(nombre);
+					estudiante.setApellido(apellido);
+					estudiante.setCorreo(correo);
+					estudianteService.guardarEstudiante(estudiante);
+					logger.info("Cliente agregado: "+sl + estudiante +sl);
 				}else{
-					logger.info("Cliente NO encontrado: "+sl+cliente+sl);
+					logger.info("Cliente NO encontrado: "+sl+estudiante+sl);
 				}
 			}
 
@@ -130,12 +119,12 @@ public class A412024399ProyectoApplication implements CommandLineRunner {
 				logger.info(sl+"*** Eliminar Cliente"+sl);
 				logger.info("Ingrese el codigo de cliente a eliminar");
 				var codigo = Integer.parseInt(consola.nextLine());
-				var cliente = clienteService.buscarClientePorId(codigo);
-				if (cliente != null){
-					clienteService.eliminarCliente(cliente);
-					logger.info("Cliente eliminado, adios" +sl + cliente +sl);
+				var estudiante = estudianteService.buscarEstudiantePorId(codigo);
+				if (estudiante != null){
+					estudianteService.eliminarEstudiante(estudiante);
+					logger.info("Cliente eliminado, adios" +sl + estudiante +sl);
 				}else {
-					logger.info("Cliente NO encontrado" + sl + cliente + sl);
+					logger.info("Cliente NO encontrado" + sl + estudiante + sl);
 				}
 			}
 
