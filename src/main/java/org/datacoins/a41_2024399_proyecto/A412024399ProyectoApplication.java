@@ -1,6 +1,7 @@
 package org.datacoins.a41_2024399_proyecto;
 
 import org.datacoins.a41_2024399_proyecto.dominio.service.IEstudianteService;
+import org.datacoins.a41_2024399_proyecto.dominio.service.IMaestroService;
 import org.datacoins.a41_2024399_proyecto.persistence.entity.Estudiante;
 import org.slf4j.Logger;
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ public class A412024399ProyectoApplication implements CommandLineRunner {
 	//inyeccion de dependencia
 	@Autowired
 	private IEstudianteService estudianteService;
+	private IMaestroService maestroService;
 	//crear nuestro objeto (herramienta) logger para interactuar con al consola
 	private static final Logger logger = LoggerFactory.getLogger(A412024399ProyectoApplication.class);
 	//crear un objeto String para saltos de linea
@@ -55,7 +57,7 @@ public class A412024399ProyectoApplication implements CommandLineRunner {
 				3. Agregar nuevo Estudiante.
 				4. Modificar Estudiante.
 				5. Eliminar Estudiante.
-				6. Salir.
+				6. Crud Maestro.
 				Elija una opcion; \s""");
 		var opcion = Integer.parseInt(consola.nextLine());
 		return opcion;
@@ -74,7 +76,7 @@ public class A412024399ProyectoApplication implements CommandLineRunner {
 				var codigo = Integer.parseInt(consola.nextLine());
 				Estudiante estudiante = estudianteService.buscarEstudiantePorId(codigo);
 				if (estudiante != null) {
-					logger.info("estudiante encontrado:");
+					logger.info("estudiante encontrado:" + sl + estudiante + sl);
 				}
 			}
 			case 3 -> {
@@ -90,11 +92,11 @@ public class A412024399ProyectoApplication implements CommandLineRunner {
 				estudiante.setApellido(apellido);
 				estudiante.setCorreo(correo);
 				estudianteService.guardarEstudiante(estudiante);
-				logger.info("Cliente agregado: " + sl + estudiante + sl);
+				logger.info("Estudiante agregado: " + sl + estudiante + sl);
 			}
 
 			case 4 -> {
-				logger.info(sl+"*** Modificar Estudiante***"+sl);
+				logger.info(sl+"*** Modificar Estudiante ***"+sl);
 				logger.info("escriba el estudiante que quiere modificar: ");
 				var codigo = Integer.parseInt(consola.nextLine());
 				Estudiante estudiante = estudianteService.buscarEstudiantePorId(codigo);
@@ -109,25 +111,24 @@ public class A412024399ProyectoApplication implements CommandLineRunner {
 					estudiante.setApellido(apellido);
 					estudiante.setCorreo(correo);
 					estudianteService.guardarEstudiante(estudiante);
-					logger.info("Cliente agregado: "+sl + estudiante +sl);
+					logger.info("Estudiante Modificado: "+sl + estudiante +sl);
 				}else{
-					logger.info("Cliente NO encontrado: "+sl+estudiante+sl);
+					logger.info("Estudiante NO encontrado: "+sl+estudiante+sl);
 				}
 			}
 
 			case 5 -> {
-				logger.info(sl+"*** Eliminar Cliente"+sl);
-				logger.info("Ingrese el codigo de cliente a eliminar");
+				logger.info(sl+"*** Eliminar Estudiante ***"+sl);
+				logger.info("Ingrese el codigo de estudiante a eliminar");
 				var codigo = Integer.parseInt(consola.nextLine());
 				var estudiante = estudianteService.buscarEstudiantePorId(codigo);
 				if (estudiante != null){
 					estudianteService.eliminarEstudiante(estudiante);
-					logger.info("Cliente eliminado, adios" +sl + estudiante +sl);
+					logger.info("Estudiante eliminado, adios" +sl + estudiante +sl);
 				}else {
-					logger.info("Cliente NO encontrado" + sl + estudiante + sl);
+					logger.info("Estudiante NO encontrado" + sl + estudiante + sl);
 				}
 			}
-
 		}
 		return salir;
 	}
