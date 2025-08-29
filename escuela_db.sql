@@ -1,13 +1,13 @@
--- drop database if exists kinvana_db;
+-- drop database if exists escuela_db;
 create database escuela_db;
 use escuela_db;
  
 create table Estudiantes(
-	codigoEstudiante integer auto_increment,
+	codigo_estudiante integer auto_increment,
     nombre varchar (64),
     apellido varchar (64),
     correo varchar (128),
-    constraint pk_estudiante primary key (codigoEstudiante)
+    constraint pk_estudiante primary key (codigo_estudiante)
 );
 
 insert into Estudiantes (nombre, apellido, correo)

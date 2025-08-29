@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.List;
 import java.util.Scanner;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class A412024399ProyectoApplication implements CommandLineRunner {
 
 	//inyeccion de dependencia
@@ -57,7 +57,6 @@ public class A412024399ProyectoApplication implements CommandLineRunner {
 				3. Agregar nuevo Estudiante.
 				4. Modificar Estudiante.
 				5. Eliminar Estudiante.
-				6. Crud Maestro.
 				Elija una opcion; \s""");
 		var opcion = Integer.parseInt(consola.nextLine());
 		return opcion;
