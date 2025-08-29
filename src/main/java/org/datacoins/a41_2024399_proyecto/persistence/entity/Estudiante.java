@@ -3,20 +3,25 @@ package org.datacoins.a41_2024399_proyecto.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "Estudiantes")
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
+@Entity
+@Table(name = "Estudiantes")
 public class Estudiante {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "codigoEstudiante")
+    @Column(name = "codigoestudiante")
     private Integer codigoEstudiante;
+
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "apellido")
     private String apellido;
+
+    @Column(name = "correo")
     private String correo;
 
 }
